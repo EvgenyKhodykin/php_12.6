@@ -179,4 +179,6 @@ function getPerfectPartner ($surname,$name,$patronomyc,$arr)
     . '&#9829;'.' Идеально на '. $probability .'%'. ' &#9829;'; 
 };
 
-print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
+//print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
+
+?>
