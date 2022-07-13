@@ -83,10 +83,26 @@ function getGenderFromName($fullName)
         {
             $genderCounter -=1;
         }
+    if (mb_substr($name['name'], -1, 1) === 'а') 
+        {
+            $genderCounter -= 1;
+        }
+    if (mb_substr($name['surname'], -2, 2) === 'ва') 
+        {    
+            $genderCounter -= 1;
+        }                
     if (mb_substr($name['patronomyc'],-2,2,'UTF-8') === 'ич') 
         {
             $genderCounter += 1;
         }
+    if (mb_substr($name['name'], -1, 1) === ('й'||'н')) 
+        {
+            $genderCounter += 1;        
+        }
+    if (mb_substr($name['surname'], -1, 1) === 'в') 
+        {
+            $genderCounter += 1;
+        }        
 
     if ($genderCounter > 0)
     {
