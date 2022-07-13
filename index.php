@@ -108,12 +108,32 @@ function getGenderFromName($fullName)
 
 // Определение возрастно-полового состава
 
-function getGenderDescription($example_persons_array)
+function getGenderDescription($arr)
 {
-    foreach ($example_persons_array as $value)
-    {
-        $value = getGenderFromName($example_persons_array['fullName']);
+    foreach ($arr as $key) {
+        $genderArr[] = getGenderFromName ($key['fullname']);
     }
 
+    $menCount = count(array_filter($genderArr,function ($key) {
+        return $key == 'Мужской пол';
+    }));
+    $womenCount = count(array_filter($genderArr,function ($key) {
+        return $key == 'Женский пол';
+    }));
+    $unknownCount = count(array_filter($genderArr,function ($key) {
+        return $key == 'Неопределённый пол';
+    }));
 
+    $menPercent = round($menCount / count($arr) * 100, 1);
+    $womenPercent = round($womenCount / count($arr) * 100, 1);
+    $unknownPercent = round($unknownCount / count($arr) * 100, 1);;
+   
+    return [$menPercent,$womenPercent,$unknownPercent];    
 };
+
+$result = getGenderDescription($example_persons_array);
+echo 'Гендерный состав аудитории:<br/>';
+echo '-------------------------------------<br/>';
+echo 'Мужчины -' .' '. $result[0] .' '. '%<br/>';
+echo 'Женщины -' .' '. $result[1] .' '. '%<br/>';
+echo 'Не удалось определить -' .' '. $result[2] .' '. '%<br/>';
