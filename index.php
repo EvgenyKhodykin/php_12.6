@@ -131,9 +131,34 @@ function getGenderDescription($arr)
     return [$menPercent,$womenPercent,$unknownPercent];    
 };
 
+/*
 $result = getGenderDescription($example_persons_array);
 echo 'Гендерный состав аудитории:<br/>';
 echo '-------------------------------------<br/>';
 echo 'Мужчины -' .' '. $result[0] .' '. '%<br/>';
 echo 'Женщины -' .' '. $result[1] .' '. '%<br/>';
 echo 'Не удалось определить -' .' '. $result[2] .' '. '%<br/>';
+*/
+
+// Идеальный подбор пары
+
+function getPerfectPartner ($surname,$name,$patronomyc,$arr)
+{
+    $newFullName = getFullnameFromParts (
+        mb_convert_case($surname, MB_CASE_TITLE_SIMPLE, "UTF-8"),
+        mb_convert_case($name, MB_CASE_TITLE_SIMPLE, "UTF-8"),
+        mb_convert_case($patronomyc, MB_CASE_TITLE_SIMPLE, "UTF-8"));
+
+    $newGender = getGenderFromName($newFullName); 
+    do {
+        $randomPerson = $arr[array_rand($arr, 1)]['fullname'];
+    }
+    while ($newGender == getGenderFromName($randomPerson));  
+
+    $probability = rand(50,100);
+
+    return getShortName($newFullName) .' + '. getShortName($randomPerson) .' =<br/>'
+    . '&#9829;'.' Идеально на '. $probability .'%'. ' &#9829;'; 
+};
+
+print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
