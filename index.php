@@ -173,10 +173,10 @@ function getPerfectPartner ($surname,$name,$patronomyc,$arr)
     }
     while ($newGender == getGenderFromName($randomPerson));  
 
-    $probability = rand(50,100);
+    $probability = round(rand(5000,10000)/100,2);
 
     return getShortName($newFullName) .' + '. getShortName($randomPerson) .' =<br/>'
     . '&#9829;'.' Идеально на '. $probability .'%'. ' &#9829;'; 
 };
 
-//print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
+print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
