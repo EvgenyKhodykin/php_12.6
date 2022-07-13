@@ -140,6 +140,8 @@ echo 'Женщины -' .' '. $result[1] .' '. '%<br/>';
 echo 'Не удалось определить -' .' '. $result[2] .' '. '%<br/>';
 */
 
+
+
 // Идеальный подбор пары
 
 function getPerfectPartner ($surname,$name,$patronomyc,$arr)
@@ -161,4 +163,4 @@ function getPerfectPartner ($surname,$name,$patronomyc,$arr)
     . '&#9829;'.' Идеально на '. $probability .'%'. ' &#9829;'; 
 };
 
-print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
+//print_r (getPerfectPartner('кУчИн','еВгЕнИй','аЛеКсАнДрОвИч',$example_persons_array));
